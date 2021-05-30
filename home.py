@@ -89,9 +89,9 @@ def pinfo():
         message = "User name or/and password is incorrect"
         return render_template('pinfo.html')
         for patient in patients:
-            if patient.username == fname and patient.password == password:
+            if (patient.username == fname) and (patient.password == password):
                 return render_template('pinfo.html')
-            if patient.username != fname or patient.password != password:
+            if (patient.username != fname) or (patient.password != password):
                 return render_template('plogin.html',message=message)
     else:
         return render_template('plogin.html')
