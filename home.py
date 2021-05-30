@@ -80,19 +80,21 @@ def pregister():
 def pLogin():
     return render_template('plogin.html')
 
-@app.route('/pinfo')  
+@app.route('/pinfo',methods=['GET','POST'])  
 def pinfo():
-    patients = PRegister.query.all()
-    fname = request.form['fName']
-    password = request.form['passw']
-    message = "User name or/and password is incorrect"
-    for patient in patients:
-        
-        if patient.username == fname and patient.password == password:
-            return render_template('pinfo.html')
-        if patient.username != fname or patient.password != password:
-            return render_template('plogin.html',message=message)
-            
+    if(request.method == 'POST'):
+        patients = PRegister.query.all()
+        fname = request.form['firstname']
+        password = request.form['password']
+        message = "User name or/and password is incorrect"
+        return render_template('pinfo.html')
+        for patient in patients:
+            if patient.username == fname and patient.password == password:
+                return render_template('pinfo.html')
+            if patient.username != fname or patient.password != password:
+                return render_template('plogin.html',message=message)
+    else:
+        return render_template('plogin.html')
 
 @app.errorhandler(404)
 def not_found(error):
