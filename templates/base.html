@@ -6,18 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="icon" href="assets/image/logo2.jfif" type="image/x-icon" style="border-radius: 50%;">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.CSS">
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/aos.css">
+  <link rel="stylesheet" href = "{{url_for('static', filename = 'css/check.css')}}">
+  
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -40,7 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link text-white" href="index.html">WHO ARE WE <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-white" href="{{url_for('home')}}">WHO ARE WE <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="services.html">SERVICES</a>
@@ -51,7 +53,7 @@
                 FOR PATIENT
               </a>
               <div class="dropdown-menu p-4" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item text-light" href="faculity.html">Department</a>
+                <a class="dropdown-item text-light" href="{{url_for('facility')}}">Department</a>
                 <a class="dropdown-item text-light" href="log_in.html">Log in</a>
     
               </div>
@@ -124,290 +126,18 @@
 
   <!--About us-->
 
-  <h3 class="text-uppercase pt-5"
-    style="border-bottom: 1px solid #dcdcdc; width: 30%; margin-left: 35%; text-align: center;">ABOUT<span>
-      US </span>
-  </h3>
+  {% block blockone %}
+  
+  {% endblock blockone %}
+
+{% block blocktwo %}
+
+{% endblock blocktwo %}
 
 
+{% block blockthree %}
 
-
-  <!--Display on large screen-->
-
-
-  <div class="row disappear pt-2">
-    <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
-      <img class="card-img-top img-fluid rounded-circle  p-2" src="assets/image/vision.jpg" alt=" ">
-
-      <figcaption data-aos="zoom-in-up" data-aos-duration="3000" class="figure-caption text-dark text-center pt-3">
-        <h4 class="text-center pb-4 pt-4"><span>Vision</span></h4>
-        <p class="text-center">
-          Tower Health will be an innovative, leading<br> regional health system dedicated to advancing the health and
-          transforming the lives of the people we serve through excellent clinical quality; accessible,
-          patient-centered, caring service; and unmatched physician and employee commitment.
-        </p>
-      </figcaption>
-    </div>
-    <div class="col-md-4" data-aos="zoom-out" data-aos-duration="3000">
-      <img class="card-img-top img-fluid rounded-circle  p-2" src="assets/image/mission.jpg" alt=" ">
-
-      <figcaption data-aos="zoom-in-up" data-aos-duration="3000" class="figure-caption text-dark text-center pt-3 ">
-        <h4 class="text-center pb-4 pt-4"><span>Mission</span></h4>
-        <p class="text-center">
-          The Mission of Tower Health is to provide<br> compassionate, accessible, high-quality, cost-effective
-          healthcare to the community; to promote health; to educate healthcare professionals; and to participate in
-          appropriate clinical research.
-        </p>
-      </figcaption>
-    </div>
-    <div class="col-md-4" data-aos="zoom-in" data-aos-duration="3000">
-      <img class="card-img-top img-fluid rounded-circle  p-2" src="assets/image/mission3.jpg" alt=" ">
-
-      <figcaption data-aos="zoom-in-up" data-aos-duration="3000" class="figure-caption text-dark text-center pt-3">
-        <h4 class="text-center pb-4 pt-4"><span>Team Work</span></h4>
-        <p class="text-center">
-          Teamwork is critically important to provide<br> safe and effective hospital care.
-          Recognizing the importance of teamwork in hospitals, we give high concern to build effective
-          and organized team that are able to achieve our vision and fulfill our mission.
-        </p>
-      </figcaption>
-    </div>
-  </div>
-
-
-
-
-
-
-  <!--Display on small screen-->
-  <div class="smallsize">
-    <div class="row">
-      <div class="col-6 col-md-6 pt-2 pl-2" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500"><img
-          class="w-100 pt-5" src="assets/image/vision.jpg" alt="" style="min-height: 200px;"></div>
-      <div class="col-6 col-md-6 pt-2" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
-        <h6 class="text-center"><span>Vision</span></h6>
-        <p class="text-center">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
-          est pariatur mollitia voluptatum in dolorem tempore officia voluptas commodi illo, quasi quia nobis
-          unde
-          ipsum non minima nam optio repudiandae.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6 col-md-6 pt-2 pl-2" data-aos="fade-right" data-aos-easing="linear" data-aos-duration="1500"><img
-          class="w-100 pt-5" src="assets/image/mission.jpg" alt="" style="min-height: 200px;"></div>
-      <div class="col-6 col-md-6 pt-2" data-aos="fade-left" data-aos-easing="linear" data-aos-duration="1500">
-        <h6 class="text-center"><span>Mission</span></h6>
-        <p class="text-center">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
-          est pariatur mollitia voluptatum in dolorem tempore officia voluptas commodi illo, quasi quia nobis
-          unde
-          ipsum non minima nam optio repudiandae.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6 col-md-6 pt-2 pl-2" data-aos="fade-up-right" data-aos-easing="linear" data-aos-duration="1500">
-        <img class="w-100 pt-5" src="assets/image/mission3.jpg" alt="" style="min-height: 200px;"></div>
-      <div class="col-6 col-md-6 pt-2" data-aos="fade-down-left" data-aos-easing="linear" data-aos-duration="1500">
-        <h6 class="text-center"><span>Team Work</span></h6>
-        <p class="text-center">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
-          est pariatur mollitia voluptatum in dolorem tempore officia voluptas commodi illo, quasi quia nobis
-          unde
-          ipsum non minima nam optio repudiandae.
-        </p>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-  <!--Latest News-->
-
-  <h3 class="text-uppercase text-center  pt-5"><span>Latest News</span></h3>
-
-
-  <div class="row w-100 p-5">
-    <div class="col-md-6" data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration="3000">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-          allowfullscreen></iframe>
-      </div>
-    </div>
-    <div class="col-md-6" data-aos="zoom-in-up" data-aos-easing="ease-out-cubic" data-aos-duration="3000">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
-          allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-
-  <!--Impact or some textual contents-->
-
-
-  <div class="row">
-    <!-- <div class="pb-3">
-      <h3 class="text-uppercase pt-3 pb-3 text-center"
-        style="border-bottom: 1px solid #dcdcdc; margin-left:15% ; margin-right: 15%;">Our<span>Role</span>
-      </h3>
-    </div> -->
-
-    <div class="col-md-4" data-aos="zoom-out" data-aos-duration="3000">
-      <h5 class="text-center"><span>Role On the city</span></h5>
-      <p class="text-center">
-        Across differing regions, medical<br> institutions (often referred to as “anchor institutions”)
-        play a major role in the social and economic vitality of cities. Economically we offer employment for more than
-        500 employers yearly.
-        Community building, the highly necessary counterpart to healthcare access work, has been steadily gaining
-        traction within the field of public health
-      </p>
-    </div>
-    <div class="col-md-4 " data-aos="zoom-in" data-aos-duration="3000">
-      <h5 class="text-center myimpact"><span>Role On rural areas </span></h5>
-      <p class="text-center">
-        We have become an integral part of<br> the rural healthcare system. Because of our significant contributions
-        to overall<br> community well-being, we are a critical component of communities across rural areas. Despite the
-        challenges, like low reimbursement rates, reduced patient volumes, We provide services across the
-        continuum of care from primary care to long-term care.
-
-      </p>
-    </div>
-    <div class="col-md-4" data-aos="zoom-out" data-aos-duration="3000">
-      <h5 class="text-center"><span>Role On other Institutions</span></h5>
-      <p class="text-center">
-        Hospitals systematically deliver<br> high quality services, placing people in the center. It means patients and
-        communities are empowered for their health. It also means adopting a longer-term perspective beyond saving lives
-        to enhancing the quality of life of patients. Hospitals can be center for religious practice, which is beocming
-        obsolete, even though intitially it was through church that many hospitals were built.
-      </p> 
-    </div>
-  </div>
-
-
-
-
-  <!--Meet Our Doctors-->
-
-  <div>
-    <h3 class="text-center">Meet <span>Our</span> Doctors</h3>
-  </div>
-  <div class="row ">
-    <div class="col-md-4" data-aos="fade-up-right" data-aos-duration="3000">
-      <a href="#">
-        <figure class="figure">
-          <img src="assets/image/doctor.jpeg" class="figure-img img-fluid rounded w-100 forbig" alt="...">
-          <img src="assets/image/doctor.jpeg" class="figure-img img-fluid rounded w-75 pt-5 pl-5  forsmall" alt="...">
-          <figcaption class="figure-caption text-center">Doctor <span>Wase Yohannes</span> <br>
-            Paediatrics
-          </figcaption>
-        </figure>
-      </a>
-    </div>
-    <div class="col-md-4" data-aos="fade-up-left" data-aos-duration="3000">
-      <a href="#">
-        <figure class="figure">
-          <img src="assets/image/doctor2.jpg" class="figure-img img-fluid rounded w-100 forbig" alt="...">
-          <img src="assets/image/doctor2.jpg" class="figure-img img-fluid rounded w-75 pt-5 pl-5  forsmall" alt="...">
-          <figcaption class="figure-caption text-center">Doctor <span>Mihret Melese</span> <br>
-            Neurosurgeon
-          </figcaption>
-        </figure>
-      </a>
-    </div>
-    <div class="col-md-4" data-aos="fade-down-right" data-aos-duration="3000">
-      <a href="#">
-        <figure class="figure">
-          <img src="assets/image/doctor3.jpg" class="figure-img img-fluid rounded w-100 forbig" alt="...">
-          <img src="assets/image/doctor3.jpg" class="figure-img img-fluid rounded w-75 pt-5 pl-5  forsmall" alt="...">
-          <figcaption class="figure-caption text-center">Doctor <span>Saron Yehualashet</span> <br>
-            Radeologist
-          </figcaption>
-        </figure>
-      </a>
-    </div>
-    
-  </div>
-
-
-
-  <!--Contact Us-->
-
-  <div class="row pt-5" id="contactus">
-    <div class="col-md-6" data-aos="fade-left" data-aos-duration="3000">
-      <h4 class="text-center pt-4">See our location...</h4>
-      <div id="map">
-        <div class="mapouter"><div class="gmap_canvas"><iframe width="500" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=5%20killo&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add google maps to your website</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
-      </div>
-    </div>
-    <div class="col-md-6" data-aos="fade-down" data-aos-duration="3000">
-      <form class="w-100 p-5">
-        <div class="form-group">
-          <div class="row" data-aos="fade-down" data-aos-duration="3000">
-            <div class="col">
-              <label for="">Name</label>
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Your name">
-            </div>
-          </div>
-        </div>
-        <form class="w-100 p-5">
-          <div class="form-group">
-            <div class="row" data-aos="fade-down" data-aos-duration="3000">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-          <form class="w-100 p-5">
-            <div class="form-group">
-              <div class="row" data-aos="fade-down" data-aos-duration="3000">
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1">Phone number</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-              </div>
-            </div>
-            <form class="w-100 p-5">
-              <div class="form-group">
-                <div class="row" data-aos="fade-down" data-aos-duration="3000">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Write your message...</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6 pb-2">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-
-                </div>
-                <button type="submit" class="btn btn-primary">Send Us</button>
-              </div>
-            </form>
-    </div>
-
-  </div>
-
+{% endblock blockthree %}
 
 
   <!--Footer-->

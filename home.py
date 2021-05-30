@@ -21,20 +21,43 @@ def __init__(self, name, city, addr,pin):
    self.city = city
    self.addr = addr 
    self.phone_number = phone_number
+
+    def __init__(self, name,lastname,more):
+        super(PRegister, self).__init__(name,lastname,more))
+        
 @app.route('/')
 def home():
-   return render_template('base.html')
+   return render_template('home.html')
+
+@app.route('/facility')
+def facility():
+    return render_template('facility.html')
+
+@app.route('/doctorlist')
+def doclist():
+    return render_template('doclist.html')
+
+@app.route('/register')
+def pregister():
+    return render_template('pregister.html')
+
 @app.errorhandler(404)
 def not_found(error):
  #resp = make_response(render_template('page_not_found.html'), 404)
  # resp.headers['X-Something'] = 'A value'
  return "Error"
+
+
 @app.route('/api/patient/all')
 def show_all():
    return render_template('patient_list.html', students = Patients.query.all() )
 #@app.errorhandler(404)
 #def page_not_found(e):
 #   return "<h1>404</h1><p>The resource could not be found.</p>", 404
+
+
+
+
 @app.route('/api/test', methods=['GET'])
 def api_filter():
     query_parameters = request.args
