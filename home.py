@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, jsonify, render_template, make_response
+from flask import request, jsonify, render_template, make_response,redirect
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 
@@ -21,18 +21,25 @@ def __init__(self, name, city, addr,pin):
    self.city = city
    self.addr = addr 
    self.phone_number = phone_number
+
 class PRegister(db.Model):
     id = db.Column('p_id', db.Integer, primary_key=True)
-    firstname = db.Column(db.String(200),nullabel=False)
-    lastname = db.Column(db.String(200),nullabel=False)
-    middlename = db.Column(db.String(200),nullabel=False)
+    firstname = db.Column(db.String(200),nullable=False)
+    lastname = db.Column(db.String(200),nullable=False)
+    middlename = db.Column(db.String(200),nullable=False)
     age = db.Column(db.Integer,nullable=False)
     address = db.Column(db.String,nullable=False)
     symptom = db.Column(db.String,nullable=False)
-    
-    def __init__(self, name,lastname,more):
-        super(PRegister, self).__init__(name,lastname,more))
+
+    dname = db.Column(db.String, nullable=False)
+    email = db.Column(db.String,nullable=True)
+    phone = db.Column(db.Integer,nullable = False)
+    username = db.Column(db.Integer,nullable=False)
+    password = db.Column(db.String,nullable=False)
+    # def __init__(self, name,lastname,more):
+    #     super(PRegister, self).__init__(name,lastname,more))
         
+    
 @app.route('/')
 def home():
    return render_template('home.html')
@@ -45,9 +52,47 @@ def facility():
 def doclist():
     return render_template('doclist.html')
 
-@app.route('/register')
+@app.route('/register', methods=['GET','POST'])
 def pregister():
-    return render_template('pregister.html')
+    if(request.method == 'POST'):
+        fname = request.form['fName']
+        lname = request.form['lName']
+        mname = request.form['mName']
+        page = request.form['Age']
+        paddress = request.form['Address']
+        psymptom = request.form['symptom']
+
+        docname = request.form['dName']
+        pemail = request.form['email']
+        pphone = request.form['phone']
+
+        pusername = request.form['uName']
+        ppassword = request.form['password']
+
+        newpatient = PRegister(firstname=fname,lastname=lname,middlename=mname,age=page,address=paddress,symptom=psymptom,dname=docname,email=pemail,phone=pphone,username=pusername,password=ppassword)
+        db.session.add(newpatient)
+        db.session.commit()
+        return redirect('/register')
+    else:
+        return render_template('register.html')
+
+@app.route('/plogin')
+def pLogin():
+    return render_template('plogin.html')
+
+@app.route('/pinfo')  
+def pinfo():
+    patients = PRegister.query.all()
+    fname = request.form['fName']
+    password = request.form['passw']
+    message = "User name or/and password is incorrect"
+    for patient in patients:
+        
+        if patient.username == fname and patient.password == password:
+            return render_template('pinfo.html')
+        if patient.username != fname or patient.password != password:
+            return render_template('plogin.html',message=message)
+            
 
 @app.errorhandler(404)
 def not_found(error):
