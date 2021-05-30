@@ -27,7 +27,7 @@ def home():
 @app.errorhandler(404)
 def not_found(error):
  #resp = make_response(render_template('page_not_found.html'), 404)
- #resp.headers['X-Something'] = 'A value'
+ # resp.headers['X-Something'] = 'A value'
  return "Error"
 @app.route('/api/patient/all')
 def show_all():
