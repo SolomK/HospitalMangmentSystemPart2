@@ -19,17 +19,22 @@ class Patients(db.Model):
 def __init__(self, name, city, addr,pin):
    self.name = name
    self.city = city
-   self.addr = addr
+   self.addr = addr 
    self.phone_number = phone_number
 @app.route('/')
 def home():
    return render_template('base.html')
+@app.errorhandler(404)
+def not_found(error):
+ #resp = make_response(render_template('page_not_found.html'), 404)
+ #resp.headers['X-Something'] = 'A value'
+ return "Error"
 @app.route('/api/patient/all')
 def show_all():
    return render_template('patient_list.html', students = Patients.query.all() )
-@app.errorhandler(404)
-def page_not_found(e):
-    return "<h1>404</h1><p>The resource could not be found.</p>", 404
+#@app.errorhandler(404)
+#def page_not_found(e):
+#   return "<h1>404</h1><p>The resource could not be found.</p>", 404
 @app.route('/api/test', methods=['GET'])
 def api_filter():
     query_parameters = request.args
