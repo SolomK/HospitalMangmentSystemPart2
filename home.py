@@ -21,7 +21,15 @@ def __init__(self, name, city, addr,pin):
    self.city = city
    self.addr = addr 
    self.phone_number = phone_number
-
+class PRegister(db.Model):
+    id = db.Column('p_id', db.Integer, primary_key=True)
+    firstname = db.Column(db.String(200),nullabel=False)
+    lastname = db.Column(db.String(200),nullabel=False)
+    middlename = db.Column(db.String(200),nullabel=False)
+    age = db.Column(db.Integer,nullable=False)
+    address = db.Column(db.String,nullable=False)
+    symptom = db.Column(db.String,nullable=False)
+    
     def __init__(self, name,lastname,more):
         super(PRegister, self).__init__(name,lastname,more))
         
