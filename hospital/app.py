@@ -373,3 +373,29 @@ class LabResource(Resource):
             return jsonify(message="login successful")
         else:
             return "Wrong email and/or password", 401 
+@api.route("/api/Laboratorists/<int:id>")
+class LabResource(Resource):
+    def get(self,id):
+        "This request returns particular Laboratorist"
+        laboratorist=Laboratorist.query.filter_by(labId=id).first()
+        return lab_schema.dump(laboratorist)
+    @api.expect(lab)
+    @api.response(204, 'Doctor details successfully updated.')
+    def put(self,id):
+        "updates Doctor details"
+        laboratorist = Laboratorist.query.filter_by(labId=id).first()
+        laboratorist.email = request.json['email']
+        laboratorist.username = request.json['username']
+        laboratorist.password = request.json['password']
+        db.session.add(laboratorist)
+        db.session.commit()
+        return lab_schema.dump(laboratorist)
+    @api.response(204, 'Laboratorist  successfully deleted.')
+    def delete(self,id):
+        "deletes particular Laboratorist"
+        laboratorist = Laboratorist.query.filter_by(labId = id).first()
+        if laboratorist is None:
+            return None, 404
+        db.session.delete(laboratorist)
+        db.session.commit()
+        return None, 204
