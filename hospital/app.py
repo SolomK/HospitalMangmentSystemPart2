@@ -399,3 +399,29 @@ class LabResource(Resource):
         db.session.delete(laboratorist)
         db.session.commit()
         return None, 204
+
+
+##################################################################################################################
+@api.route("/api/Pharmasist")
+class PharmaResource(Resource):
+    def get(self):
+        "This request prints all Pharmasist"
+        pharmasist =Pharmasist.query.all()
+        return pharmas_schema.dump(pharmasist)
+
+    @api.expect(pharma)
+    @api.response(201,"Successfuly created new Pharmasist!")
+    def post(self):
+        """This request creates new Laboratorist"""
+        pharmasist = Pharmasist()
+        email = request.json['email']
+        test=Pharmasist.query.filter_by(email=email).first()
+        if test:
+            return None, 404
+        else: 
+            pharmasist.username = request.json['username']
+            pharmasist.email = request.json['email']
+            pharmasist.password = request.json['password']
+            db.session.add(pharmasist)
+            db.session.commit()
+            return pharma_schema.dump(pharmasist),201
