@@ -478,3 +478,25 @@ class pharmaResource(Resource):
         db.session.delete(pharmasist)
         db.session.commit()
         return None, 204
+
+
+######################################################################################################
+@api.route("/api/Order",methods=["GET","POST"])
+
+class OrderResource(Resource):
+    def get(self):
+        """This request returns all Order"""
+        order =  Order.query.all()
+        return orders_schema.dump(order)
+    @api.expect(order)
+    @api.response(201,"Successfuly created new Order!")
+    def post(self):
+        """This request creates new Order"""
+        #create new order
+        order =  Order()
+        order.orderFor = request.json['orderFor']
+        order.description = request.json['description']
+        order.pUserName = request.json['pUserName']
+        db.session.add(order)
+        db.session.commit()
+        return order_schema.dump(order)
