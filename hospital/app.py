@@ -500,3 +500,27 @@ class OrderResource(Resource):
         db.session.add(order)
         db.session.commit()
         return order_schema.dump(order)
+
+@api.route('/api/Orders/<int:id>')
+class OrderResource(Resource):
+    def get(self, id):
+        '''
+        This request return single appointment
+        '''
+        order = Order.query.filter_by(orderId=id).first()
+        return order_schema.dump(order)
+    @api.expect(order)
+    @api.response(204, 'Order details successfully updated.')
+    def put(self, id):
+        """
+        This request updates a particular Order.
+        """
+        order = Order.query.filter_by(orderId=id).first()
+        order.description = request.json['description']
+        order.pUserName = request.json['pUserName']
+        order.orderFor = request.json['orderFor']
+        
+        db.session.add(order)
+        db.session.commit()
+
+        return order_schema.dump(order)
