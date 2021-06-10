@@ -96,3 +96,18 @@ lab = api.model("Laboratorist",{
     'password':fields.String("password"),
     'labId':fields.Integer
 })
+#for phaarmacy model
+pharma = api.model("Pharmasist",{
+    'username':fields.String("phrmasist name"),
+    'email':fields.String("Email"),
+    'password':fields.String("password"),
+    'pharmaId':fields.Integer
+})
+#for Order model
+order = api.model("Order", {
+    'orderFor':fields.String("order for name"),
+    'description':fields.String("blood test/give this medicine"),
+    'pUserName':fields.String("order doc name"),
+    'orderId':fields.Integer
+
+})
