@@ -133,3 +133,40 @@ class AppointmentResource(Resource):
         db.session.add(appointment)
         db.session.commit()
         return appointment_schema.dump(appointment)
+@api.route('/api/appointments/<int:id>')
+class AppointmentResource(Resource):
+    def get(self, id):
+        '''
+        This request return single appointment
+        '''
+        appointment = Appointment.query.filter_by(appointmentId=id).first()
+        return appointment_schema.dump(appointment)
+    @api.expect(appointment)
+    @api.response(204, 'Appointment details successfully updated.')
+    def put(self, id):
+        """
+        This request updates a particular appointment.
+        """
+        appointment = Appointment.query.filter_by(appointmentId=id).first()
+        appointment.description = request.json['description']
+        appointment.name = request.json['name']
+        appointment.appointment_date = request.json['appointment_date']
+        appointment.appointed_by = request.json['appointed_by']
+        appointment.appointed_to = request.json['appointed_to']
+        
+        db.session.add(appointment)
+        db.session.commit()
+
+        return appointment_schema.dump(appointment)
+
+    @api.response(204, 'Appointment  successfully deleted.')
+    def delete(self, id):
+        """
+        This request deletes a particular appointment.
+        """
+        appointment = Appointment.query.filter_by(appointmentId=id).first()
+        if appointment is None:
+            return None, 404
+        db.session.delete(appointment)
+        db.session.commit()
+        return None, 204
