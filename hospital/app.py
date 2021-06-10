@@ -111,3 +111,25 @@ order = api.model("Order", {
     'orderId':fields.Integer
 
 })
+
+@api.route("/api/appointments",methods=["GET","POST"])
+
+class AppointmentResource(Resource):
+    def get(self):
+        """This request returns all appointments"""
+        appointments =  Appointment.query.all()
+        return appointments_schema.dump(appointments)
+    @api.expect(appointment)
+    @api.response(201,"Successfuly created new appointment!")
+    def post(self):
+        """This request creates new appointment"""
+        #create new appointment
+        appointment =  Appointment()
+        appointment.appointed_to = request.json['appointed_to']
+        appointment.description = request.json['description']
+        appointment.name = request.json['name']
+        appointment.appointment_date = request.json['appointment_date']
+        appointment.appointed_by = request.json['appointed_by']
+        db.session.add(appointment)
+        db.session.commit()
+        return appointment_schema.dump(appointment)
