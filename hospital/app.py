@@ -193,3 +193,27 @@ class DoctorResource(Resource):
             db.session.add(doctor)
             db.session.commit()
             return doctor_schema.dump(doctor),201
+@api.route("/api/loginDoctor")
+class DoctorResource(Resource):
+    def get(self):
+        "This request prints all Doctors"
+        doctor = Doctor.query.all()
+        return doctors_schema.dump(doctor)
+    @api.expect(doctor)
+    @api.response(201,"Successfuly created new logedin!")
+    def post(self):
+        """This request creates new Doctor"""
+        doctor = Doctor()
+        if request.is_json:
+            email = request.json['email']
+            password = request.json['password']
+        else:
+            email = request.form['email']
+            password = request.form['password']
+        test=Doctor.query.filter_by(email=email, password=password).first()
+        if test:
+            # access_token = create_access_token(identity=email)
+            # , access_token=access_token
+            return jsonify(message="login successful")
+        else:
+            return "Wrong email and/or password", 401 
