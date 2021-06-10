@@ -333,6 +333,20 @@ class LabResource(Resource):
 
     @api.expect(lab)
     @api.response(201,"Successfuly created new Laboratorist!")
+     def post(self):
+            """This request creates new Laboratorist"""
+        laboratorist =Laboratorist()
+        email = request.json['email']
+        test=Laboratorist.query.filter_by(email=email).first()
+        if test:
+            return None, 404
+        else: 
+            laboratorist.username = request.json['username']
+            laboratorist.email = request.json['email']
+            laboratorist.password = request.json['password']
+            db.session.add(laboratorist)
+            db.session.commit()
+            return lab_schema.dump(laboratorist),201
 
 
  
