@@ -170,3 +170,26 @@ class AppointmentResource(Resource):
         db.session.delete(appointment)
         db.session.commit()
         return None, 204
+@api.route("/api/Doctors")
+class DoctorResource(Resource):
+    def get(self):
+        "This request prints all Doctors"
+        doctor =Doctor.query.all()
+        return doctors_schema.dump(doctor)
+
+    @api.expect(doctor)
+    @api.response(201,"Successfuly created new Doctor!")
+    def post(self):
+        """This request creates new Doctor"""
+        doctor =Doctor()
+        email = request.json['email']
+        test=Doctor.query.filter_by(email=email).first()
+        if test:
+            return None, 404
+        else: 
+            doctor.username = request.json['username']
+            doctor.email = request.json['email']
+            doctor.password = request.json['password']
+            db.session.add(doctor)
+            db.session.commit()
+            return doctor_schema.dump(doctor),201
