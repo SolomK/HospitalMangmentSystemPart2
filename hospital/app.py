@@ -217,3 +217,29 @@ class DoctorResource(Resource):
             return jsonify(message="login successful")
         else:
             return "Wrong email and/or password", 401 
+api.route("/api/Doctors/<int:id>")
+class DoctorResource(Resource):
+    def get(self,id):
+        "This request returns particular Doctor"
+        doctor=Doctor.query.filter_by(DoctorId=id).first()
+        return doctor_schema.dump(doctor)
+    @api.expect(doctor)
+    @api.response(204, 'Doctor details successfully updated.')
+    def put(self,id):
+        "updates Doctor details"
+        doctor = Doctor.query.filter_by(DoctorId=id).first()
+        doctor.email = request.json['email']
+        doctor.username = request.json['username']
+        doctor.password = request.json['password']
+        db.session.add(doctor)
+        db.session.commit()
+        return doctor_schema.dump(doctor)
+    @api.response(204, 'Doctor  successfully deleted.')
+    def delete(self,id):
+        "deletes particular Doctor"
+        doctor = Doctor.query.filter_by(DoctorId = id).first()
+        if doctor is None:
+            return None, 404
+        db.session.delete(doctor)
+        db.session.commit()
+        return None, 204
