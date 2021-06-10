@@ -51,3 +51,48 @@ appointments_schema = AppointmentSchema(many=True)
 api = Api(app,version="1",title="Hospital Database",description="ABC hospital the besst ever")
 # jwt = JWTManager(app)
 #for appointment model
+appointment = api.model("Appointment", {
+    'appointed_by':fields.String("patient name"),
+    'description':fields.String("symptom"),
+    'appointment_date':fields.DateTime,
+    'appointed_to':fields.String(),
+    'name':fields.String("appoinment name"),
+    'appointmentId':fields.Integer
+})
+#for Doctor model
+
+doctor = api.model("Doctor",{
+    'username':fields.String("Doctor name"),
+    'email':fields.String("Email"),
+    'password':fields.String("password"),
+    'DoctorId':fields.Integer
+})
+#for admin
+admin = api.model("Admin",{
+    'username':fields.String("Admin name"),
+    'email':fields.String("Email"),
+    'password':fields.String("password"),
+    'AdminId':fields.Integer
+})
+#for Patient model
+
+patient = api.model("Patient",{
+    'username':fields.String("patient name"),
+    'email':fields.String("Email"),
+    'name':fields.String('name'),
+    'password':fields.String("password"),
+    'address':fields.String("address"),
+    'PatientId':fields.Integer,
+    'symptom':fields.String,
+    'status':fields.String,
+    'phone':fields.String,
+    'docname':fields.String("doctor name"),
+    'date':fields.String
+})
+#for laboratory model
+lab = api.model("Laboratorist",{
+    'username':fields.String("Laboratorist name"),
+    'email':fields.String("Email"),
+    'password':fields.String("password"),
+    'labId':fields.Integer
+})
