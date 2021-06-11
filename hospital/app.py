@@ -524,3 +524,14 @@ class OrderResource(Resource):
         db.session.commit()
 
         return order_schema.dump(order)
+   @api.response(204, 'Order  successfully deleted.')
+    def delete(self, id):
+        """
+        This request deletes a particular appointment.
+        """
+        order = Order.query.filter_by(orderId=id).first()
+        if order is None:
+            return None, 404
+        db.session.delete(order)
+        db.session.commit()
+        return None, 204
