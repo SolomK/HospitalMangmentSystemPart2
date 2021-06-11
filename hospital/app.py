@@ -524,14 +524,40 @@ class OrderResource(Resource):
         db.session.commit()
 
         return order_schema.dump(order)
-   @api.response(204, 'Order  successfully deleted.')
-    def delete(self, id):
-        """
-        This request deletes a particular appointment.
-        """
-        order = Order.query.filter_by(orderId=id).first()
-        if order is None:
+   
+@api.response(204, 'Order  successfully deleted.')
+def delete(self, id):
+    """
+    This request deletes a particular appointment.
+    """
+    order = Order.query.filter_by(orderId=id).first()
+    if order is None:
+        return None, 404
+    db.session.delete(order)
+    db.session.commit()
+    return None, 204
+
+#api part for the admin page started
+@api.route("/api/Admins")
+class AdminResource(Resource):
+    def get(self):
+        "This request prints all admins"
+        admin =Admin.query.all()
+        return admins_schema.dump(admin)
+
+    @api.expect(admin)
+    @api.response(201,"Successfuly created new admin!")
+    def post(self):
+        """This request creates new Doctor"""
+        admin =Admin()
+        email = request.json['email']
+        test=Admin.query.filter_by(email=email).first()
+        if test:
             return None, 404
-        db.session.delete(order)
-        db.session.commit()
-        return None, 204
+        else: 
+            admin.username = request.json['username']
+            admin.email = request.json['email']
+            admin.password = request.json['password']
+            db.session.add(admin)
+            db.session.commit()
+            return admin_schema.dump(admin),201
