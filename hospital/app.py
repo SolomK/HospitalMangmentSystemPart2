@@ -333,8 +333,8 @@ class LabResource(Resource):
 
     @api.expect(lab)
     @api.response(201,"Successfuly created new Laboratorist!")
-     def post(self):
-            """This request creates new Laboratorist"""
+    def post(self):
+        """This request creates new Laboratorist"""
         laboratorist =Laboratorist()
         email = request.json['email']
         test=Laboratorist.query.filter_by(email=email).first()
@@ -347,6 +347,19 @@ class LabResource(Resource):
             db.session.add(laboratorist)
             db.session.commit()
             return lab_schema.dump(laboratorist),201
+
+#crud operations for Laboratorist start
+@api.route("/api/LoginLaboratorist")
+class LabResource(Resource):
+    def get(self):
+        "This request prints all Laboratorists"
+        laboratorist = Laboratorist.query.all()
+        return labs_schema.dump(Laboratorist)
+    @api.expect(lab)
+    @api.response(201,"Successfuly created new logedin!")
+
+
+
 
 
  
