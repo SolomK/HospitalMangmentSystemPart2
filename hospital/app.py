@@ -561,3 +561,29 @@ class AdminResource(Resource):
             db.session.add(admin)
             db.session.commit()
             return admin_schema.dump(admin),201
+
+#crud operations for admin start
+@api.route("/api/loginAdmin")
+class AdminResource(Resource):
+    def get(self):
+        "This request prints all Doctors"
+        admin = Admin.query.all()
+        return admins_schema.dump(admin)
+    @api.expect(admin)
+    @api.response(201,"Successfuly created new logedin!")
+    def post(self):
+        """This request creates new Doctor"""
+        admin = Admin()
+        if request.is_json:
+            email = request.json['email']
+            password = request.json['password']
+        else:
+            email = request.form['email']
+            password = request.form['password']
+        test=Admin.query.filter_by(email=email, password=password).first()
+        if test:
+            # access_token = create_access_token(identity=email)
+            # , access_token=access_token
+            return jsonify(message="login successful")
+        else:
+            return "Wrong email and/or password", 401  
