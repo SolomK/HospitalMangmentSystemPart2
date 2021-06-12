@@ -372,6 +372,32 @@ class LabResource(Resource):
             db.session.commit()
             return lab_schema.dump(laboratorist),201
 
+#crud operations for Laboratorist start
+@api.route("/api/LoginLaboratorist")
+class LabResource(Resource):
+    def get(self):
+        "This request prints all Laboratorists"
+        laboratorist = Laboratorist.query.all()
+        return labs_schema.dump(Laboratorist)
+    @api.expect(lab)
+    @api.response(201,"Successfuly created new logedin!")
+    def post(self):
+        """This request creates new Laboratorist"""
+        laboratorist = Laboratorist()
+        if request.is_json:
+            email = request.json['email']
+            password = request.json['password']
+        else:
+            email = request.form['email']
+            password = request.form['password']
+        test=Laboratorist.query.filter_by(email=email, password=password).first()
+        if test:
+            # access_token = create_access_token(identity=email)
+            # , access_token=access_token
+            return jsonify(message="login successful")
+        else:
+            return "Wrong email and/or password", 401 
+
 
 
 
