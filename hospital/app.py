@@ -587,3 +587,30 @@ class AdminResource(Resource):
             return jsonify(message="login successful")
         else:
             return "Wrong email and/or password", 401  
+
+@api.route("/api/Admins/<int:id>")
+class AdminResource(Resource):
+    def get(self,id):
+        "This request returns particular Doctor"
+        admin=Admin.query.filter_by(AdminId=id).first()
+        return admin_schema.dump(admin)
+    @api.expect(admin)
+    @api.response(204, 'Admin details successfully updated.')
+    def put(self,id):
+        "updates Doctor details"
+        admin = Admin.query.filter_by(AdminId=id).first()
+        admin.email = request.json['email']
+        admin.username = request.json['username']
+        admin.password = request.json['password']
+        db.session.add(admin)
+        db.session.commit()
+        return admin_schema.dump(admin)
+    @api.response(204, 'admin  successfully deleted.')
+    def delete(self,id):
+        "deletes particular admin"
+        admin = Admin.query.filter_by(AdminId = id).first()
+        if admin is None:
+            return None, 404
+        db.session.delete(admin)
+        db.session.commit()
+        return None, 204
