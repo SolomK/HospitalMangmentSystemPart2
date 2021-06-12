@@ -243,3 +243,30 @@ class DoctorResource(Resource):
         db.session.delete(doctor)
         db.session.commit()
         return None, 204
+
+@api.route("/api/Patients",methods=["GET",'POST'])
+class PatientResource(Resource):
+    def get(self):
+        "This request prints all Patients"
+        patient = Patient.query.all()
+        return patients_schema.dump(patient)
+
+    @api.expect(patient)
+    @api.response(201,"Successfuly created new Patient!")
+    def post(self):
+        """This request creates new Patient"""
+        patient = Patient()
+        email = request.json['email']
+        test=Patient.query.filter_by(email=email).first()
+        if test:
+            return None, 404
+        else:
+            patient.username = request.json['username']
+            patient.email = request.json['email']
+            patient.name = request.json['name']
+            patient.password = request.json['password']
+            patient.address = request.json['address']
+            db.session.add(patient)
+            db.session.commit()
+            return patient_schema.dump(patient),201
+
