@@ -614,3 +614,11 @@ class AdminResource(Resource):
         db.session.delete(admin)
         db.session.commit()
         return None, 204
+
+#search for appointments
+@api.route("/api/appointments/<string:appointmentstring>")
+class appointmentsResource(Resource):
+    def get(self,appointmentstring):
+        "This request returns Doctor interesed area appointments."
+        appointment = Appointment.query.filter(Appointment.name.contains(appointmentstring)).all()
+        return appointments_schema.dump(appointment),200
