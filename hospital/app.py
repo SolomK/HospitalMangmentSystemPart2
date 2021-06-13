@@ -415,6 +415,15 @@ class LabResource(Resource):
         db.session.add(laboratorist)
         db.session.commit()
         return lab_schema.dump(laboratorist)
+    @api.response(204, 'Laboratorist  successfully deleted.')
+    def delete(self,id):
+        "deletes particular Laboratorist"
+        laboratorist = Laboratorist.query.filter_by(labId = id).first()
+        if laboratorist is None:
+            return None, 404
+        db.session.delete(laboratorist)
+        db.session.commit()
+        return None, 204
 
 
 
