@@ -269,4 +269,29 @@ class PatientResource(Resource):
             db.session.add(patient)
             db.session.commit()
             return patient_schema.dump(patient),201
-
+api.route("/api/Patients/<int:id>")
+class PatientResource(Resource):
+    def get(self,id):
+        "This request returns particular Patient"
+        patient= Patient.query.filter_by(PatientId=id).first()
+        return patient_schema.dump(patient)
+    @api.expect(patient)
+    @api.response(204, 'Patient details successfully updated.')
+    def put(self,id):
+        "updates Patient details"
+        patient = Patient.query.filter_by(PatientId=id).first()
+        patient.email = request.json['email']
+        patient.name  = request.json['name']
+        patient.address = request.json['address']
+        db.session.add(patient)
+        db.session.commit()
+        return patient_schema.dump(patient)
+    def delete(self,id):
+        "deletes particular Patient"
+        patient =Patient.query.filter_by(PatientId=id).first()
+        if patient is None:
+            return "Patient is not found",404
+        db.session.delete(patient)
+        db.session.commit()
+        return "Patient  successfully deleted.",204
+#crud operations for Patient end
