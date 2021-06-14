@@ -451,6 +451,33 @@ class PharmaResource(Resource):
             return pharma_schema.dump(pharmasist),201
 
 
+#crud operations for Laboratorist start
+@api.route("/api/LoginPharmasist")
+class PharmaResource(Resource):
+    def get(self):
+        "This request prints all Laboratorists"
+        pharmasist = Pharmasist.query.all()
+        return pharmas_schema.dump(pharmasist)
+    @api.expect(pharma)
+    @api.response(201,"Successfuly created new logedin!")
+    def post(self):
+        """This request creates new Pharmasist"""
+        pharmasist = Pharmasist()
+        if request.is_json:
+            email = request.json['email']
+            password = request.json['password']
+        else:
+            email = request.form['email']
+            password = request.form['password']
+        test=Pharmasist.query.filter_by(email=email, password=password).first()
+        if test:
+            # access_token = create_access_token(identity=email)
+            # , access_token=access_token
+            return jsonify(message="login successful")
+        else:
+            return "Wrong email and/or password", 401 
+
+
 
 
 
