@@ -477,6 +477,33 @@ class PharmaResource(Resource):
         else:
             return "Wrong email and/or password", 401 
 
+@api.route("/api/Pharmasist/<int:id>")
+class pharmaResource(Resource):
+    def get(self,id):
+        "This request returns particular Laboratorist"
+        pharmasist=Pharmasist.query.filter_by(pharmaId=id).first()
+        return pharma_schema.dump(pharmasist)
+    @api.expect(pharma)
+    @api.response(204, 'Pharmasist details successfully updated.')
+    def put(self,id):
+        
+        pharmasist = Pharmasist.query.filter_by(pharmaId=id).first()
+        pharmasist.email = request.json['email']
+        pharmasist.username = request.json['username']
+        pharmasist.password = request.json['password']
+        db.session.add(pharmasist)
+        db.session.commit()
+        return pharma_schema.dump(pharmasist)
+    @api.response(204, 'Pharmasist  successfully deleted.')
+    def delete(self,id):
+        "deletes particular Pharmasist"
+        pharmasist = Pharmasist.query.filter_by(pharmaId = id).first()
+        if pharmasist is None:
+            return None, 404
+        db.session.delete(pharmasist)
+        db.session.commit()
+        return None, 204
+
 
 
 
