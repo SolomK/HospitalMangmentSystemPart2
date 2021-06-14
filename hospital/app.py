@@ -425,6 +425,17 @@ class LabResource(Resource):
         db.session.commit()
         return None, 204
 
+##################################################################################################################
+@api.route("/api/Pharmasist")
+class PharmaResource(Resource):
+    def get(self):
+        "This request prints all Pharmasist"
+        pharmasist =Pharmasist.query.all()
+        return pharmas_schema.dump(pharmasist)
+
+    @api.expect(pharma)
+    @api.response(201,"Successfuly created new Pharmasist!")
+
 
 
 
