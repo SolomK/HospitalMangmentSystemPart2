@@ -435,6 +435,20 @@ class PharmaResource(Resource):
 
     @api.expect(pharma)
     @api.response(201,"Successfuly created new Pharmasist!")
+    def post(self):
+        """This request creates new Laboratorist"""
+        pharmasist = Pharmasist()
+        email = request.json['email']
+        test=Pharmasist.query.filter_by(email=email).first()
+        if test:
+            return None, 404
+        else: 
+            pharmasist.username = request.json['username']
+            pharmasist.email = request.json['email']
+            pharmasist.password = request.json['password']
+            db.session.add(pharmasist)
+            db.session.commit()
+            return pharma_schema.dump(pharmasist),201
 
 
 
