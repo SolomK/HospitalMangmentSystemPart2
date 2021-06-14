@@ -561,6 +561,30 @@ class OrderResource(Resource):
         db.session.commit()
         return None, 204
 
+@api.route("/api/Admins")
+class AdminResource(Resource):
+    def get(self):
+        "This request prints all admins"
+        admin =Admin.query.all()
+        return admins_schema.dump(admin)
+
+    @api.expect(admin)
+    @api.response(201,"Successfuly created new admin!")
+    def post(self):
+        """This request creates new Doctor"""
+        admin =Admin()
+        email = request.json['email']
+        test=Admin.query.filter_by(email=email).first()
+        if test:
+            return None, 404
+        else: 
+            admin.username = request.json['username']
+            admin.email = request.json['email']
+            admin.password = request.json['password']
+            db.session.add(admin)
+            db.session.commit()
+            return admin_schema.dump(admin),201
+
 
 
 
