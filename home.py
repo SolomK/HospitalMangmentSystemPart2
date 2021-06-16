@@ -42,7 +42,7 @@ class PRegister(db.Model):
     
 @app.route('/')
 def home():
-   return render_template('home.html')
+    return render_template('home.html')
 
 @app.route('/facility')
 def facility():
@@ -78,7 +78,41 @@ def pregister():
 
 @app.route('/plogin')
 def pLogin():
+    if request.method == 'POST': 
+        email = request.form.get('firstname')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
+        user = PRegister.query.filter_by(email=username).first()
+        if not user:
+            flash('Please sign up before!')
+            return "In correct username or password!"
+        elif not check_password_hash(user.password, password):
+            flash('Please check your login details and try again.')
+            return redirect(url_for('pinfo')) # if the user 
+            login_user(user, remember=remember)
+        return redirect(url_for('pLogin'))
     return render_template('plogin.html')
+    
+    '''
+    if request.method == 'POST':
+
+        username = request.form["firstname"]
+        password1 = request.form["password"]
+
+        userDb = db.execute("SELECT password, username from database.db").fetchall()
+
+        for user in userDb:
+            if(password1 == user.password and username == user.username):
+                return redirect(url_for('home'))
+        for user in userDb:
+            if(password1 != user.password or username != user.username):
+                return render_template('login.html',message = "Incorect username and passowrd")
+        for user in userDb:
+            if(password1 is None or username is None):
+                flash("you entered incorrect password or username")
+                return render_template('login.html',message = "Please Enter username and passowrd")
+        return render_template('login.html')
+    return render_template('plogin.html')'''
 
 @app.route('/pinfo',methods=['GET','POST'])  
 def pinfo():
