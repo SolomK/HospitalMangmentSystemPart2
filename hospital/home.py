@@ -1,12 +1,12 @@
-from flask import Flask
+from flask import Flask, Blueprint
 from flask import request, jsonify, render_template, make_response,redirect
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
 app.config["DEBUG"] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///patient.sqlite3'
+bp = Blueprint("home",__name__, url_prefix='/home')
 
 db = SQLAlchemy(app)
 class Patients(db.Model):
@@ -40,19 +40,19 @@ class PRegister(db.Model):
     #     super(PRegister, self).__init__(name,lastname,more))
         
     
-@app.route('/')
+@bp.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/facility')
+@bp.route('/facility')
 def facility():
     return render_template('facility.html')
 
-@app.route('/doctorlist')
+@bp.route('/doctorlist')
 def doclist():
     return render_template('doclist.html')
 
-@app.route('/register', methods=['GET','POST'])
+@bp.route('/register', methods=['GET','POST'])
 def pregister():
     if(request.method == 'POST'):
         fname = request.form['fName']
@@ -76,7 +76,7 @@ def pregister():
     else:
         return render_template('register.html')
 
-@app.route('/plogin')
+@bp.route('/plogin')
 def pLogin():
     if request.method == 'POST': 
         email = request.form.get('firstname')
@@ -114,7 +114,7 @@ def pLogin():
         return render_template('login.html')
     return render_template('plogin.html')'''
 
-@app.route('/pinfo',methods=['GET','POST'])  
+@bp.route('/pinfo',methods=['GET','POST'])  
 def pinfo():
     if(request.method == 'POST'):
         patients = PRegister.query.all()
@@ -130,14 +130,14 @@ def pinfo():
     else:
         return render_template('plogin.html')
 
-@app.errorhandler(404)
+@bp.errorhandler(404)
 def not_found(error):
  #resp = make_response(render_template('page_not_found.html'), 404)
  # resp.headers['X-Something'] = 'A value'
  return "Error"
 
 
-@app.route('/api/patient/all')
+@bp.route('/api/patient/all')
 def show_all():
    return render_template('patient_list.html', students = Patients.query.all() )
 #@app.errorhandler(404)
@@ -147,7 +147,7 @@ def show_all():
 
 
 
-@app.route('/api/test', methods=['GET'])
+@bp.route('/api/test', methods=['GET'])
 def api_filter():
     query_parameters = request.args
 
