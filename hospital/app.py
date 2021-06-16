@@ -269,6 +269,33 @@ class PatientResource(Resource):
             db.session.add(patient)
             db.session.commit()
             return patient_schema.dump(patient),201
+
+@api.route("/api/loginPatient")
+class PatientResource(Resource):
+    def get(self):
+        # this is the redirection to after the Doctor is logedin
+        patient = Patient.query.all()
+        return patients_schema.dump(patient)
+    @api.expect(patient)
+    @api.response(201,"Successfuly created new logedin!")
+    def post(self):
+        # this is for submiting the form to check the tokens
+        patient = Patient()
+        if request.is_json:
+            email = request.json['email']
+            password = request.json['password']
+        else:
+            email = request.form['email']
+            password = request.form['password']
+        test=Patient.query.filter_by(email=email, password=password).first()
+        if test:
+            # access_token = create_access_token(identity=email)
+            # , access_token=access_token
+            return jsonify(message="login successful")
+        else:
+            return "Wrong email or password", 401 
+
+
 api.route("/api/Patients/<int:id>")
 class PatientResource(Resource):
     def get(self,id):
