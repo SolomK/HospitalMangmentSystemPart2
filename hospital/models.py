@@ -39,3 +39,26 @@ class Appointment(db.Model):
     appointment_date=db.Column(db.String,nullable=False)
     appointed_by = db.Column(db.String,nullable=False)
     appointed_to = db.Column(db.String,nullable=False)
+
+
+class Order(db.Model):
+    __tablename__="order"
+    orderId = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    pUserName = db.Column(db.String,nullable=False)
+    description = db.Column(db.String,nullable=False)
+    orderFor = db.Column(db.String,nullable=False)
+
+class Laboratorist(db.Model):
+    __tablename__='laboratory'
+    labId = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    username = db.Column(db.String,nullable=False)
+    email = db.Column(db.String,nullable=False)
+    password = db.Column(db.String,nullable=False)
+
+
+class Pharmasist(db.Model):
+    __tablename__='pharmacy'
+    pharmaId = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    username = db.Column(db.String,nullable=False)
+    email = db.Column(db.String,nullable=False)
+    password = db.Column(db.String,nullable=False)
