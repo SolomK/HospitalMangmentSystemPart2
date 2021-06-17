@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Startmin - Bootstrap Admin Theme</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Timeline CSS -->
+        <link href="../css/timeline.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="../css/startmin.css" rel="stylesheet">
+
+        <!-- Morris Charts CSS -->
+        <link href="../css/morris.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+
+        <!--Main Wrapper-->
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top bg-primary" role="navigation">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">ABC Hospital</a>
+                </div>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div style="margin-left: 80%; margin-top: 10px;">
+                    <ul>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    </ul>
+                </div>
+                
+                            
+                        
+                    
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i>Admin</a>
+                            </li>
+                            <li>
+                                <a href="#doctor"><i class="fa fa-bar-chart-o fa-fw"></i> Doctors</a>
+                                
+                            </li>
+                            <li>
+                                <a href="#lab"><i class="fa fa-table fa-fw"></i> Laboratorist</a>
+                            </li>
+                            <li>
+                                <a href="#patient"><i class="fa fa-edit fa-fw"></i> Patient</a>
+                            </li>
+                            <li>
+                                <a href="#pharmacy"><i class="fa fa-edit fa-fw"></i> Pharmacist</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Wrapper-->
+            <div id="page-wrapper">
+                <!-- Page Container-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">ABC Hospital</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-comments fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">26</div>
+                                            <div>New Comments!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-tasks fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">12</div>
+                                            <div>New Tasks!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-yellow">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-shopping-cart fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">124</div>
+                                            <div>New Orders!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-red">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-support fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">13</div>
+                                            <div>Support Tickets!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Serviced Patient Since 2010 
+                                    <div class="pull-right">
+                                        
+                                    </div>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div id="morris-area-chart"></div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+
+                <!--Doctor-->
+                <div class="container-fluid">
+                <div class="container-fluid" id="doctor" style="height: 650px;">
+                     <h3 style="margin-top: 50px;">Doctor</h3>
+                    <button class = "createDoc"><a href="#create">Create</a></button>
+                    <table id="doctor" class="table table-striped" style="width:100%;background-color:whitesmoke;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody class="dList">
+                            
+                        </tbody>
+
+                    </table>
+                </div>
+                </div>
+
+                <!--Lab-->
+                <div class="container-fluid" id="lab" style="height: 650px;">
+                    <h3 style="margin-top: 50px;">Laboratorist</h3>
+                    <table id="lab" class="table table-striped" style="width:100%;background-color:whitesmoke;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lList">
+                            
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <!--patient-->
+                <div class="container-fluid " id="patient" style="height: 650px;">
+                    <h3 style="margin-top: 50px;">Patient</h3>
+                    <table id="patient" class="table table-striped" style="width:100%;background-color:whitesmoke;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody class="pList">
+                            
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <!--pharmacy-->
+                <div class="container-fluid " id="pharmacy" style="height: 700px;">
+                    <h3 style="margin-top: 50px;">Pharmacy</h3>
+                    <table id="pharma" class="table table-striped" style="width:100%;background-color:whitesmoke;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody class="pharmaList">
+                            
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <!-- create-->
+                <div class="container-fluid" id="create" style="height: 700px;">
+                    <h1 style="margin-top: 50px">ABC Hospital</h1>
+                    <form id= "form" method="POST">
+                        <input type="text" id= "Uname" placeholder="username"/>
+                        <input type="text" id= "email" placeholder="email"/>
+                        <input type="text" id= "pass" placeholder="password"/>
+                        <input type="submit" value="add"/>
+                    </form>
+                </div>
+
+
+            </div>
+            <!-- / page-wrapper -->
+
+        </div>
+        <!-- /Main wrapper -->
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="../js/raphael.min.js"></script>
+        <script src="../js/morris.min.js"></script>
+        <script src="../js/morris-data.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/startmin.js"></script>
+
+    </body>
+</html>
