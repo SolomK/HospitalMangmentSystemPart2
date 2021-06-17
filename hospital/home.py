@@ -3,41 +3,36 @@ from flask import request, jsonify, render_template, make_response,redirect
 import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 
-app.config["DEBUG"] = True
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///patient.sqlite3'
-bp = Blueprint("home",__name__, url_prefix='/home')
+bp = Blueprint("home",__name__, url_prefix='/')
+# class Patients(db.Model):
+#    id = db.Column('patient_id', db.Integer, primary_key = True)
+#    name = db.Column(db.String(100))
+#    city = db.Column(db.String(50))  
+#    addr = db.Column(db.String(200))
+#    phone_number = db.Column(db.String(15))
 
-db = SQLAlchemy(app)
-class Patients(db.Model):
-   id = db.Column('patient_id', db.Integer, primary_key = True)
-   name = db.Column(db.String(100))
-   city = db.Column(db.String(50))  
-   addr = db.Column(db.String(200))
-   phone_number = db.Column(db.String(15))
+# def __init__(self, name, city, addr,pin):
+#    self.name = name
+#    self.city = city
+#    self.addr = addr 
+#    self.phone_number = phone_number
 
-def __init__(self, name, city, addr,pin):
-   self.name = name
-   self.city = city
-   self.addr = addr 
-   self.phone_number = phone_number
+# class PRegister(db.Model):
+#     id = db.Column('p_id', db.Integer, primary_key=True)
+#     firstname = db.Column(db.String(200),nullable=False)
+#     lastname = db.Column(db.String(200),nullable=False)
+#     middlename = db.Column(db.String(200),nullable=False)
+#     age = db.Column(db.Integer,nullable=False)
+#     address = db.Column(db.String,nullable=False)
+#     symptom = db.Column(db.String,nullable=False)
 
-class PRegister(db.Model):
-    id = db.Column('p_id', db.Integer, primary_key=True)
-    firstname = db.Column(db.String(200),nullable=False)
-    lastname = db.Column(db.String(200),nullable=False)
-    middlename = db.Column(db.String(200),nullable=False)
-    age = db.Column(db.Integer,nullable=False)
-    address = db.Column(db.String,nullable=False)
-    symptom = db.Column(db.String,nullable=False)
-
-    dname = db.Column(db.String, nullable=False)
-    email = db.Column(db.String,nullable=True)
-    phone = db.Column(db.Integer,nullable = False)
-    username = db.Column(db.Integer,nullable=False)
-    password = db.Column(db.String,nullable=False)
-    # def __init__(self, name,lastname,more):
-    #     super(PRegister, self).__init__(name,lastname,more))
+#     dname = db.Column(db.String, nullable=False)
+#     email = db.Column(db.String,nullable=True)
+#     phone = db.Column(db.Integer,nullable = False)
+#     username = db.Column(db.Integer,nullable=False)
+#     password = db.Column(db.String,nullable=False)
+#     # def __init__(self, name,lastname,more):
+#     #     super(PRegister, self).__init__(name,lastname,more))
         
     
 @bp.route('/')
