@@ -30,6 +30,7 @@ form.addEventListener('submit',function(e){
             'symptom':symptom.value,
             'username':uName.value,
             'password':password.value,
+            'status':"admin_needed"
             
          
         })
